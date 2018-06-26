@@ -1,57 +1,62 @@
-{% if section.settings.title != blank %}
-  <h2>{{ section.settings.title | escape }}</h2>
-{% endif %}
+<div class="page-width">
+  {% if section.settings.title != blank %}
+    <h2 class="section-header">{{ section.settings.title | escape }}</h2>
+  {% endif %}
 
-{%- assign collection = collections[section.settings.collection] -%}
+  {%- assign collection = collections[section.settings.collection] -%}
+  <div class="grid">
+    {% for product in collection.products limit: 6 %}
+      <div class="grid__item small--one-half medium-up--one-third large-up--one-quarter">
+        <a class="product-tile" href="{{ product.url | within: collection }}">
 
-{% for product in collection.products limit: 6 %}
-  <a href="{{ product.url | within: collection }}">
+          {% if product.featured_image != blank %}
+            {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
+          {% endif %}
 
-    {% if product.featured_image != blank %}
-      {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
-    {% endif %}
+          <p class="product-title">{{ product.title }}</p>
+          <p>
+            {% if product.compare_at_price > product.price %}
 
-    <p>{{ product.title }}</p>
-  </a>
+              {% if product.price_varies %}
+                {%- assign sale_price = product.price | money -%}
+                {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+              {% else %}
+                {{ 'products.product.on_sale' | t }}
+                {{ product.price | money }}
+              {% endif %}
 
-  <p>
-    {% if product.compare_at_price > product.price %}
+            {% else %}
 
-      {% if product.price_varies %}
-        {%- assign sale_price = product.price | money -%}
-        {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-      {% else %}
-        {{ 'products.product.on_sale' | t }}
-        {{ product.price | money }}
-      {% endif %}
+              {% if product.price_varies %}
+                {%- assign price = product.price | money -%}
+                {{ 'products.product.from_text_html' | t: price: price }}
+              {% else %}
+                {{ product.price | money }}
+              {% endif %}
 
+            {% endif %}
+          </p>
+        </a>
+      </div>
     {% else %}
 
-      {% if product.price_varies %}
-        {%- assign price = product.price | money -%}
-        {{ 'products.product.from_text_html' | t: price: price }}
-      {% else %}
-        {{ product.price | money }}
-      {% endif %}
+      {% for i in (1..6) %}
+        <div class="grid__item small--one-half medium-up--one-third large-up--one-quarter">
+          <a class="product-tile" href="#">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
 
-    {% endif %}
-  </p>
-{% else %}
+            <p class="product-title">
+              {{ 'homepage.onboarding.product_title' | t }}
+            </p>
+            <p class="product-price">{{ 1999 | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
 
-  {% for i in (1..6) %}
-    <a href="#">
-      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-
-      <p>
-        {{ 'homepage.onboarding.product_title' | t }}
-      </p>
-    </a>
-
-    <p>{{ 1999 | money }}</p>
-  {% endfor %}
-{% endfor %}
-
+    {% endfor %}
+  </div>
+</div>
 {% schema %}
   {
     "name": "Featured collection",

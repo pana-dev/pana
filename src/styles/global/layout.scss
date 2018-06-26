@@ -2,6 +2,7 @@
 body,
 html {
   background-color: $color-body;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .page-width {
@@ -9,4 +10,12 @@ html {
   max-width: $width-site;
   padding: 0 $gutter;
   margin: 0 auto;
+}
+
+.section-header {
+  font-weight: 300;
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 48px 0 24px 0;
 }

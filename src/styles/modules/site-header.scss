@@ -1,9 +1,116 @@
 /*================ Site Header ================*/
+
+.header-section {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e3e3e3;
+
+  @include media-query(small) {
+    padding: 15px 18px;
+  }
+
+  @include media-query(medium-up){
+    padding: 18px 30px;
+  }
+
+  @include media-query(large-up) {
+    padding: 0 50px;
+  }
+}
+
+.header-section a {
+  text-decoration: none;
+}
+
+.header-section h1 {
+  margin: 0;
+}
+
+.header-section header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left,
+.header-right {
+  flex: 1 0 0;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.mobile-menu {
+  @include media-query(large-up) {
+    display: none;
+  }
+}
+
 .site-logo {
   display: block;
+  font-family: 'Amaranth', sans-serif;
+  text-decoration: none;
+  color: #222;
 
   img {
     display: block;
     width: 100%;
   }
+
+  &:hover {
+    color: #9fa8a3;
+  }
+}
+
+
+// navigation
+
+.navigation-section {
+  position: relative;
+  display: none;
+  width: 100%;
+  text-align: left;
+
+  @include media-query(large-up) {
+    display: block;
+  }
+}
+
+.navigation-section ul {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.navigation-section li {
+  display: inline-block;
+  margin: 0 18px;
+}
+
+.navigation-section a {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 24px 0;
+  color: #333;
+  transition: all .3s ease-in-out;
+}
+
+.nav-cart {
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 24px 0;
+  color: #333;
+  transition: all .3s ease-in-out;
+}
+
+.navigation-section a:hover {
+  box-shadow: 0 1px 0 #333;
+}
+
+.nav-cart:hover {
+  box-shadow: 0 1px 0 #333;
 }

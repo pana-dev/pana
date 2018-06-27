@@ -4,22 +4,39 @@
     display: block;
     position: relative;
     text-decoration: none;
-    color: #9fa8a3;
-}
+    text-align: center;
 
-.product-tile:hover {
-    color: #222;
+    a {
+        display: inline-block;
+        position: relative;
+        width: 70%;
+        color: #9fa8a3;
+    }
 
-    .product-price {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
+    img {
+        display: inline-block;
+        position: relative;
+        margin-bottom: 36px;
+        max-width: 60%;
+    }
+    
+    &:hover {
+        a {
+            color: #222;
+        }
+        
+        .product-price {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
     }
 }
 
 .product-title {
     position: relative;
     display: block;
-    margin: 18px 0 0 0;
+    margin: 0;
     font-size: 14px;
     letter-spacing: 1px;
     font-weight: 300;

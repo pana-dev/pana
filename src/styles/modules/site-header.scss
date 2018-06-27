@@ -41,6 +41,12 @@
   text-align: right;
 }
 
+.header-center h1,
+.header-center .h1 {
+  font-size: 2em;
+  font-weight: 300;
+}
+
 .mobile-menu {
   @include media-query(large-up) {
     display: none;
@@ -59,7 +65,7 @@
   }
 
   &:hover {
-    color: #9fa8a3;
+    color: #222;
   }
 }
 

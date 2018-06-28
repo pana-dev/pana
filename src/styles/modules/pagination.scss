@@ -1,0 +1,30 @@
+/*================ Pagination ================*/
+
+.pagination {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+        color: #3b3a36;
+        text-decoration: none;
+    }
+
+    .page,
+    .next {
+        display: inline-block;
+        position: relative;
+        padding: .5em .75em;
+        margin-right: 1em;
+        color: #3b3a36;
+        transition: all .3s ease-in-out;
+
+        &:hover,
+        &.current {
+            box-shadow: inset -3px -3px 0 #b3c2bf, inset 3px 3px 0 #b3c2bf;
+        }
+    }
+
+}

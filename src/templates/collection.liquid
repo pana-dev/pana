@@ -28,15 +28,15 @@
     <div class="grid">
       {% for product in collection.products %}
         <div class="grid__item small--one-half medium-up--one-third large-up--one-quarter">
-          <div class="product-tile">
+          <a href="{{ product.url | within: collection }}" class="product-tile">
             {% if product.featured_image != blank %}
-              <a href="{{ product.url | within: collection }}">
+              <div class="product-img">
                 {{ product.featured_image.src | img_url: '480x480' | img_tag: product.featured_image.alt }}
-              </a>
+              </div>
             {% endif %}
 
             <p class="product-title truncate">
-              <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+              {{ product.title }}
             </p>
             <p class="product-price">
               {% if product.compare_at_price > product.price %}
@@ -69,7 +69,7 @@
                 {{ 'products.product.sold_out' | t }}
               {% endunless %}
             </p>
-          </div>
+          </a>
         </div>
 
       {% else %}
@@ -80,7 +80,7 @@
                 {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
                 {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
 
-                <p class="product-title">
+                <p class="product-title truncate">
                   {{ 'homepage.onboarding.product_title' | t }}
                 </p>
 

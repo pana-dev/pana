@@ -10,10 +10,14 @@
         <a class="product-tile" href="{{ product.url | within: collection }}">
 
           {% if product.featured_image != blank %}
-            {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
+            <div class="product-img">
+              {{ product.featured_image.src | img_url: '480x480' | img_tag: product.title }}
+            </div>
           {% endif %}
 
-          <p class="product-title">{{ product.title }}</p>
+          <p class="product-title truncate">
+            {{ product.title }}
+          </p>
           <p>
             {% if product.compare_at_price > product.price %}
 
@@ -44,9 +48,10 @@
         <div class="grid__item small--one-half medium-up--one-third large-up--one-quarter">
           <a class="product-tile" href="#">
             {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-
-            <p class="product-title">
+            <div class="product-img">
+              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+            </div>
+            <p class="product-title truncate">
               {{ 'homepage.onboarding.product_title' | t }}
             </p>
             <p class="product-price">{{ 1999 | money }}</p>
